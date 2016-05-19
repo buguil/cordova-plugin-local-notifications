@@ -147,11 +147,10 @@ public class Builder {
             builder.setLargeIcon(options.getIconBitmap());
         }
 
+        applyDeleteReceiver(builder);
         if (fullScreen != 0) {
           applyFullScreenReceiver(builder);
         }
-
-        applyDeleteReceiver(builder);
         applyContentReceiver(builder);
 
         return new Notification(context, options, builder, triggerReceiver);
