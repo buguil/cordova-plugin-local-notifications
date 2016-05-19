@@ -328,6 +328,13 @@ public class Options {
     }
 
     /**
+     * Full Screen Mode number for the local notification.
+     */
+    public int getFullScreenMode() {
+        return options.optInt("fullScreen", 0);
+    }
+
+    /**
      * JSON object as string.
      */
     public String toString() {

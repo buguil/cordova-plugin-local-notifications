@@ -35,6 +35,7 @@ exports._defaults = {
     title: '',
     sound: 'res://platform_default',
     badge: 0,
+    fullScreen: 0,
     id:    0,
     data:  undefined,
     every: undefined,
@@ -157,6 +158,15 @@ exports.convertProperties = function (options) {
             console.warn('Badge number is not a number: ' + options.id);
         } else {
             options.badge = Number(options.badge);
+        }
+    }
+
+    if (options.fullScreen) {
+        if (isNaN(options.fullScreen)) {
+            options.fullScreen = this.getDefaults().fullScreen;
+            console.warn('fullScreen number is not a number: ' + options.id);
+        } else {
+            options.fullScreen = Number(options.fullScreen);
         }
     }
 

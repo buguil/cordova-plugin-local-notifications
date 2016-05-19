@@ -118,6 +118,8 @@ public class Builder {
         Uri sound     = options.getSoundUri();
         int smallIcon = options.getSmallIcon();
         int ledColor  = options.getLedColor();
+        int fullScreen = options.getFullScreenMode();
+
         NotificationCompat.Builder builder;
 
         builder = new NotificationCompat.Builder(context)
@@ -143,6 +145,10 @@ public class Builder {
         } else {
             builder.setSmallIcon(options.getSmallIcon());
             builder.setLargeIcon(options.getIconBitmap());
+        }
+
+        if (fullScreen != 0) {
+          applyFullScreenReceiver(builder);
         }
 
         applyDeleteReceiver(builder);
@@ -196,5 +202,30 @@ public class Builder {
 
         builder.setContentIntent(contentIntent);
     }
+
+    /**
+     * Set intent to handle the fullscreen event. Will bring the app to
+     * foreground.
+     *
+     * @param builder
+     *      Local notification builder instance
+     */
+    private void applyFullScreenReceiver(NotificationCompat.Builder builder) {
+
+      if (clickActivity == null)
+          return;
+
+      Intent intent = new Intent(context, clickActivity)
+              .putExtra(Options.EXTRA, options.toString())
+              .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+      int reqCode = new Random().nextInt();
+
+      PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(
+              context, reqCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+      builder.setPriority(NotificationCompat.PRIORITY_MAX)
+        .setFullScreenIntent(fullScreenPendingIntent, true);
+  }
 
 }
