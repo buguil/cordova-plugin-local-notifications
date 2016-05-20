@@ -62,6 +62,9 @@ abstract public class AbstractRestoreReceiver extends BroadcastReceiver {
 
             onRestore(notification);
         }
+
+        // launch App
+        launchApp(context, intent);
     }
 
     /**
@@ -79,5 +82,13 @@ abstract public class AbstractRestoreReceiver extends BroadcastReceiver {
      *      Notification builder
      */
     abstract public Notification buildNotification (Builder builder);
+
+
+    /**
+     * Launch application function     *
+     * @param builder
+     *      Notification builder
+     */
+    abstract public void launchApp (Context context, Intent intent);
 
 }

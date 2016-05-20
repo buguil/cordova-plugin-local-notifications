@@ -27,6 +27,11 @@ import de.appplant.cordova.plugin.notification.AbstractRestoreReceiver;
 import de.appplant.cordova.plugin.notification.Builder;
 import de.appplant.cordova.plugin.notification.Notification;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.oatic.iphayonaliss.MainActivity;
+
 /**
  * This class is triggered upon reboot of the device. It needs to re-register
  * the alarms with the AlarmManager since these alarms are lost in case of
@@ -62,6 +67,22 @@ public class RestoreReceiver extends AbstractRestoreReceiver {
                 .setClearReceiver(ClearReceiver.class)
                 .setClickActivity(ClickActivity.class)
                 .build();
+    }
+
+    /**
+     * Launcg APP function specified by options.
+     *
+     * @param builder
+     *      Notification builder
+     */
+    @Override
+    public void launchApp (Context context, Intent intent) {
+
+      if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+        Intent i = new Intent(context, MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
+      }
     }
 
 }
