@@ -179,8 +179,8 @@ public class Notification {
             getAlarmMgr().setRepeating(AlarmManager.RTC_WAKEUP,
                     triggerTime, options.getRepeatInterval(), pi);
         } else {
-          // Use exact time for versions above Lollipop
-          if(android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
+          // Use exact time for versions above Kitkat
+          if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
             getAlarmMgr().setExact(AlarmManager.RTC_WAKEUP, triggerTime, pi);
           } else {
             getAlarmMgr().set(AlarmManager.RTC_WAKEUP, triggerTime, pi);
