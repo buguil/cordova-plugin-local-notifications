@@ -180,7 +180,9 @@ public class Notification {
                     triggerTime, options.getRepeatInterval(), pi);
         } else {
           // Use exact time for versions above Kitkat
-          if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
+          if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getAlarmMgr().setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pi);
+          } else if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
             getAlarmMgr().setExact(AlarmManager.RTC_WAKEUP, triggerTime, pi);
           } else {
             getAlarmMgr().set(AlarmManager.RTC_WAKEUP, triggerTime, pi);
