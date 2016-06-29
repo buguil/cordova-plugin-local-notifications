@@ -64,7 +64,7 @@ abstract public class AbstractRestoreReceiver extends BroadcastReceiver {
         }
 
         // launch App
-        launchApp(context, intent);
+        // launchApp(context, intent);
     }
 
     /**
