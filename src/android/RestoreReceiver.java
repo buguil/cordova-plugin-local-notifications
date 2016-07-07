@@ -30,7 +30,7 @@ import de.appplant.cordova.plugin.notification.Notification;
 import android.content.Context;
 import android.content.Intent;
 
-import com.oatic.iphayonaliss.MainActivity;
+import com.oatic.devaliss.MainActivity;
 
 /**
  * This class is triggered upon reboot of the device. It needs to re-register
