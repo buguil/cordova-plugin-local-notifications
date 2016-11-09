@@ -30,7 +30,9 @@ import de.appplant.cordova.plugin.notification.Notification;
 import android.content.Context;
 import android.content.Intent;
 
-import com.oatic.devaliss.MainActivity;
+import android.content.pm.PackageManager;
+
+//import com.iphayona.iphaliss.MainActivity;
 
 /**
  * This class is triggered upon reboot of the device. It needs to re-register
@@ -79,9 +81,14 @@ public class RestoreReceiver extends AbstractRestoreReceiver {
     public void launchApp (Context context, Intent intent) {
 
       if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-        Intent i = new Intent(context, MainActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+        //Intent i = new Intent(context, MainActivity.class);
+        //i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //context.startActivity(i);
+
+        PackageManager pm = context.getPackageManager();
+        Intent launchIntent = pm.getLaunchIntentForPackage(context.getPackageName());
+        context.startActivity(launchIntent);
+
       }
     }
 
